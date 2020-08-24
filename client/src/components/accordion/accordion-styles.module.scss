@@ -1,0 +1,10 @@
+.accordionSection {
+  width: 100%;
+  .tabDisplay {
+    display: none;
+  }
+
+  input[type="checkbox"][value="1"].collape-item:checked ~ .tabDisplay[value="1"] {
+    display: block;
+  }
+}

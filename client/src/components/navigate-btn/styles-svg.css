@@ -1,0 +1,13 @@
+
+.setBGColrSVG{
+  --colrSVGSec:#554242;
+  --colrSVGMain:#FFD200;
+}
+
+.iconBtn {
+    fill: #FFD200;
+  }
+  #bgsvg {
+    fill: var(--colrSVGSec);
+    opacity: 1;
+  }

@@ -1,0 +1,53 @@
+$kaBrown: #554242;
+$kaYellow: #FFD200;
+$kaPlaceholder: #B3B3B3;
+$elemShadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
+// $txtColorOne:#254e90;
+// $txtPlaceholder: #636466;
+// $elemColorOne: #006cb7;
+// $inActive: #99C4E2;
+// $txtDanger: red;
+// $historyPoint: #007ECD;
+// $mainGradient: linear-gradient(90deg, #66adaf 0%, #66adaf 10%, #3c95cf 30%, #254e90 42%, #d7364c 55%, #e07739 84%, #e07739 100%);
+// $secondGradient: linear-gradient(-180deg, rgb(180, 212, 234) 6%, rgb(226, 238, 247) 61%, rgb(255, 255, 255) 100%);
+// $mainGradient: red;
+
+.lineMod {
+    border-color: $kaBrown;
+    border-style: solid;
+    border-width: 0.5px;
+  }
+
+.mainColr{
+  background-color: $kaBrown!important;
+}
+.secColr{
+  background-color: $kaYellow!important;
+}
+.kaBrownText {
+  color: $kaBrown;
+}
+.kaYellowText {
+  color: $kaYellow;
+}
+
+// elem-shadow {
+//     box-shadow: $elemShadow;
+// }
+// .main-txtcolr {
+//     color: $txtColorOne;
+// }
+// .elem-colr{
+//     color: $elemColorOne;
+// }
+
+// .warning-txtcolr {
+//     color: $txtDanger;
+// }
+// .main-gradient{
+//     background: $mainGradient;
+// }
+// .main-bgcolr{
+//     background-color: $txtColorOne;
+// }

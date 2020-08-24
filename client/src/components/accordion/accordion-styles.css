@@ -1,0 +1,32 @@
+.accordionSection {
+  width: 100%;
+}
+
+.accordionSection .tabDisplay {
+  text-align: left;
+  padding: 10px 0;
+  /* display: none; */
+  /* display: block; */
+
+  /* transition: height 1s linear;
+  opacity: 0;
+  height: 0;
+  overflow: hidden; */
+}
+.accordionSection .tabHeight {
+  transition: height 0.2s, opacity 0.2s linear;
+  opacity: 0;
+  height: 0;
+  /* overflow: hidden; */
+}
+.accordionSection .tabDisplay ol {
+  padding-inline-start: 20px;
+}
+input[type="checkbox"][value="1"].collape-item:checked
+  ~ .tabDisplay[value="1"] {
+  /* transition: 1s ease-in-out; */
+  /* display: block; */
+
+  opacity: 1;
+  height: auto;
+}

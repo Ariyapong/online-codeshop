@@ -4,7 +4,13 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const cors = require("cors");
-const sequelize = require("./database");
+// const sequelize = require("./database");
+const models = require("./models");
+
+const usersRouter = require("./routes/all");
+const codeRegisRouter = require("./routes/regis-code-route");
+const rewardRouter = require("./routes/reward-route");
+const rewardDetailRouter = require("./routes/reward-detail-route");
 
 const ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 5000;
@@ -18,7 +24,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-sequelize.sync().then((res) => {
+// Implement route
+app.use("/", codeRegisRouter);
+app.use("/api/reward", rewardRouter);
+app.use("/users", usersRouter);
+
+models.sequelize.sync().then((res) => {
   //   console.log(`PostgreSQL connected ${err}.`);
   app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}!`);

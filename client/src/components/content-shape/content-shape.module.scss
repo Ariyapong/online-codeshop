@@ -1,0 +1,58 @@
+@import "../../variables";
+
+.contentShapSection {
+  .shapeWrap {
+    position: relative;
+    width: 100%;
+    // height: 60vh;
+    height: 50vh;
+    // -webkit-clip-path: ellipse(60% at 50% 10%);
+    // clip-path: ellipse(85% at 50% 10%);
+    clip-path: ellipse(75% 90% at 50% 10%);
+    background-color: $kaYellow;
+
+    // clip-path: circle(87% at 50% 10%);
+    // background: rgb(255, 210, 0);
+    // background: url(../../assets/images/images/login-top-gift.png), linear-gradient(
+    //   -180deg,
+    //   rgba(255, 210, 0, 1) 50.7%,
+    //   rgba(222, 183, 22, 1) 74%,
+    //   rgba(167, 137, 59, 1) 98%
+    // );
+    // background-size: contain;
+    // background-repeat: no-repeat;
+  }
+  .rewardContent {
+    // height: calc(100% - 29.75%);
+    display: flex;
+    align-items: center;
+
+    .frameImg {
+      // width: 50%;
+      width: 85%;
+      margin: 0 auto;
+      // padding: 0 5%;
+      position: relative;
+      .displayImg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        // background-image: url('../../assets/images/reward/gyproc-56.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    @media screen and (max-width: 420px) and (min-height: 800px) {
+      .rewardContentWrap {
+        padding-top:5%;
+        .frameImg {
+          width: 85%;
+        }
+      }
+    }
+    // .frameDetail {
+    // }
+  }
+}

@@ -1,0 +1,39 @@
+.displayCode {
+  text-align: center;
+  padding: 3%;
+  box-sizing: border-box;
+   h3 {
+       margin-block-start: 0.5em;
+       margin-block-end: 0.5em;
+   }
+  .frameDisplay {
+    margin: 2.5vh 0;
+    border-radius: 10px;
+    border: 2px solid #ffce55;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  .fontSize {
+    font-size: 0.9rem;
+    text-align: left;
+    word-break: break-all;
+    padding: 0 5px;
+  }
+  .customCell {
+    padding: 5px 0;
+    border-radius: 5px;
+    width: calc(100% - 4px) !important;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #ffce55;
+  }
+
+  .ListItemEven {
+    background-color: #f8f8f0;
+  }
+
+  @media screen and (min-width: 960px) {
+    .fontSize {
+      font-size: 1.5rem;
+    }
+  }
+}

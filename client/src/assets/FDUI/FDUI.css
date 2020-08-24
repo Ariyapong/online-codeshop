@@ -1,0 +1,496 @@
+  #root {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    max-width: 100%;
+    /* font-family: ''; */
+    font-size: 2vmax;
+    color: #000;
+    /* font-family: 'DB55'; */
+  }
+  
+  .App {
+    position: relative;
+    text-align: center;
+    /* width: 100vmax;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 1);
+    transition: all 0.3s ease-in-out; */
+  }
+  
+  .inline-block {
+    display: inline-block
+  }
+  
+  .base-scroll {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .base-main {
+    position: relative;
+    display: table;
+    width: 100%;
+    height: 100%;
+    transform: scale(1);
+  }
+  
+  .global-button:hover{
+    cursor: pointer;
+  }
+
+  .base-main.collapse {
+    display: inline-table;
+  }
+  
+  .base-top {
+    position: fixed;
+    display: block;
+    top: 0;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .base-bottom {
+    position: fixed;
+    display: block;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .base-left {
+    position: fixed;
+    display: block;
+    left: 0;
+    height: 100%;
+    margin: 0 auto;
+  }
+  
+  .base-right {
+    position: fixed;
+    display: block;
+    left: 0;
+    height: 100%;
+    margin: 0 auto;
+  }
+  
+  .render {
+    pointer-events: all;
+  }
+  
+  .bypass {
+    pointer-events: none;
+  }
+  
+  .base-frame {
+    position: relative;
+    display: table-row;
+    width: 100%;
+    height: 100%;
+  }
+
+  .base-frame.spanall {
+    column-span: all;
+  }
+  
+  .base-frame.collapse:not(.col) {
+    width: 100%;
+    height: 0px;
+  }
+  
+  .base-frame.col.collapse {
+    width: 0px;
+  }
+  
+  .base-frame.sizeauto {
+    width: 100%;
+    height: auto;
+  }
+  
+  .base-frame.size5p {
+    width: 100%;
+    height: 5%;
+  }
+  
+  .base-frame.size10p {
+    width: 100%;
+    height: 10%;
+  }
+  
+  .base-frame.size20p {
+    width: 100%;
+    height: 20%;
+  }
+  
+  .base-frame.size25p {
+    width: 100%;
+    height: 25%;
+  }
+  
+  .base-frame.size30p {
+    width: 100%;
+    height: 30%;
+  }
+  
+  .base-frame.size33p {
+    width: 100%;
+    height: 33.3333%;
+  }
+  
+  .base-frame.size40p {
+    width: 100%;
+    height: 40%;
+  }
+  
+  .base-frame.size45p {
+    width: 100%;
+    height: 45%;
+  }
+  
+  .base-frame.size50p {
+    width: 100%;
+    height: 50%;
+  }
+  
+  .base-frame.size60p {
+    width: 100%;
+    height: 60%;
+  }
+  
+  .base-frame.size66p {
+    width: 100%;
+    height: 66.6666%;
+  }
+  
+  .base-frame.size70p {
+    width: 100%;
+    height: 70%;
+  }
+  
+  .base-frame.size75p {
+    width: 100%;
+    height: 75%;
+  }
+  
+  .base-frame.size80p {
+    width: 100%;
+    height: 80%;
+  }
+  
+  .base-frame.size90p {
+    width: 100%;
+    height: 90%;
+  }
+  
+  .base-frame.col.sizeauto {
+    width: auto;
+  }
+  
+  .base-frame.col.size5p {
+    width: 5%;
+    height: auto;
+  }
+  
+  .base-frame.col.size10p {
+    width: 10%;
+    height: auto;
+  }
+  
+  .base-frame.col.size20p {
+    width: 20%;
+    height: auto;
+  }
+  
+  .base-frame.col.size25p {
+    width: 25%;
+    height: auto;
+  }
+  
+  .base-frame.col.size30p {
+    width: 30%;
+    height: auto;
+  }
+  
+  .base-frame.col.size33p {
+    width: 33.3333%;
+    height: auto;
+  }
+  
+  .base-frame.col.size40p {
+    width: 40%;
+    height: auto;
+  }
+  
+  .base-frame.col.size45p {
+    width: 45%;
+    height: auto;
+  }
+  
+  .base-frame.col.size50p {
+    width: 50%;
+    height: auto;
+  }
+  
+  .base-frame.col.size60p {
+    width: 60%;
+    height: auto;
+  }
+  
+  .base-frame.col.size66p {
+    width: 66.6666%;
+    height: auto;
+  }
+  
+  .base-frame.col.size70p {
+    width: 70%;
+    height: auto;
+  }
+  
+  .base-frame.col.size75p {
+    width: 75%;
+    height: auto;
+  }
+  
+  .base-frame.col.size80p {
+    width: 80%;
+    height: auto;
+  }
+  
+  .base-frame.col.size90p {
+    width: 90%;
+    height: auto;
+  }
+  
+  .base-frame.col {
+    display: table-cell;
+  }
+  
+  .base-frame.vtop {
+    vertical-align: top;
+  }
+  
+  .base-frame.vmiddle {
+    vertical-align: middle;
+  }
+  
+  .base-frame.vbottom {
+    vertical-align: bottom;
+  }
+  
+  .base-frame.aleft {
+    text-align: left;
+  }
+  
+  .base-frame.acenter {
+    text-align: center;
+  }
+  
+  .base-frame.aright {
+    text-align: right;
+  }
+  
+  .base-data {
+    min-height: 100vh;
+  }
+  
+  .h100p {
+    height: 100%;
+  }
+  
+  .h80p {
+    height: 80%;
+  }
+  
+  .h60p {
+    height: 60%;
+  }
+  
+  .h50p {
+    height: 50%;
+  }
+  
+  .h33p {
+    height: 33.333%;
+  }
+
+  .h25p {
+    height: 25%;
+  }
+  
+  .h20p {
+    height: 20%;
+  }
+  
+  .h10p {
+    height: 10%;
+  }
+  
+  .w100p {
+    width: 100%;
+  }
+  
+  .w90p {
+    width: 90%;
+  }
+  
+  .w80p {
+    width: 80%;
+  }
+  
+  .w70p {
+    width: 70%;
+  }
+  
+  .w60p {
+    width: 60%;
+  }
+  
+  .w50p {
+    width: 50%;
+  }
+  
+  .w40p {
+    width: 40%;
+  }
+  
+  .w33p {
+    width: 33.3333%;
+  }
+  
+  .w30p {
+    width: 30%;
+  }
+  
+  .w20p {
+    width: 20%;
+  }
+  
+  .w10p {
+    width: 10%;
+  }
+  
+  .w5p {
+    width: 5%;
+  }
+  
+  .h100vm {
+    height: 100vmax;
+  }
+  
+  .h90vm {
+    height: 90vmax;
+  }
+  
+  .h80vm {
+    height: 80vmax;
+  }
+  
+  .h60vm {
+    height: 60vmax;
+  }
+  
+  .h50vm {
+    height: 50vmax;
+  }
+  
+  .h20vm {
+    height: 20vmax;
+  }
+  
+  .h15vm {
+    height: 15vmax;
+  }
+  
+  .h10vm {
+    height: 10vmax;
+  }
+  
+  .h5vm {
+    height: 5vmax;
+  }
+  
+  .w100vm {
+    width: 100vmax;
+  }
+  
+  .w90vm {
+    width: 90vmax;
+  }
+  
+  .w80vm {
+    width: 80vmax;
+  }
+  
+  .w70vm {
+    width: 70vmax;
+  }
+  
+  .w60vm {
+    width: 60vmax;
+  }
+  
+  .w50vm {
+    width: 50vmax;
+  }
+  
+  .w40vm {
+    width: 40vmax;
+  }
+  
+  .w30vm {
+    width: 30vmax;
+  }
+  
+  .w20vm {
+    width: 20vmax;
+  }
+  
+  .w10vm {
+    width: 10vmax;
+  }
+  
+  .w5vm {
+    width: 5vmax;
+  }
+  
+  .select-none {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .select-auto {
+    -webkit-touch-callout: auto;
+    -webkit-user-select: auto;
+    -khtml-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+  }
+  
+  .select-all {
+    -webkit-touch-callout: all;
+    -webkit-user-select: all;
+    -khtml-user-select: all;
+    -moz-user-select: all;
+    -ms-user-select: all;
+    user-select: all;
+  }
+  
+  .hide {
+    display: none;
+  }
+
+  .fake-hide {
+    opacity: 0;
+  }
