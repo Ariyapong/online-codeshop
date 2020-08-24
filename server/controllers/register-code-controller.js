@@ -6,13 +6,18 @@ const Op = db.Sequelize.Op;
 // Create controller for GET request to '/code-register'
 exports.regis = async (req, res) => {
   const PurchasedAmount = parseInt(req.body.data.PurchasedAmount);
+  const itemId = parseInt(req.body.data.rewardOpt.id);
+  // const itemId = req.body.data.rewardOpt.id;
   console.log("request data ===>", req.body.data.PurchasedAmount);
+
+  // return res.send(itemId+"");
 
   try {
     // find only one avaliable code,
     // return null if none can be found
     const findAvalibleCode = await CodeOnline.findAndCountAll({
       where: {
+        RewardId: itemId,
         Redeemed_TS: null,
         MobileNo: null,
         IsActived: true,
@@ -85,6 +90,8 @@ exports.regis = async (req, res) => {
     };
     return res.status(400).send(data);
   }
+
+  
 };
 
 function UserException(message, exceptionName) {

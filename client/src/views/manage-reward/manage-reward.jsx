@@ -22,7 +22,7 @@ import Axios from "../../helpers/API/my-axios";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { format } from "date-fns";
 import _ from "lodash/fp";
-import { useHistory } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 /**lib*/
 
 /******component styles(start) */
@@ -37,17 +37,25 @@ const useStyles = makeStyles(() => ({
       //   width: "25ch",
       margin: "0.5rem 0",
     },
+    "@media screen and (min-width: 768px)": {
+      width: "80%",
+      margin: "0 auto",
+    },
   },
   customButton: {
     margin: "10px",
     minWidth: "30vw",
+    "@media screen and (min-width: 768px)": {
+      minWidth: "100%",
+      margin: "unset",
+    },
   },
   dateTimePickerWidth: {
     width: "100%",
   },
   dialogCustom: {
-    margin: '5%'
-  }
+    margin: "5%",
+  },
 }));
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -79,6 +87,7 @@ function ManageReward() {
   /**state data(start)*/
   const { handleSubmit, control, errors, watch, register } = useForm();
   const [rewardOption, setRewardOption] = useState([
+    // { id: "1", label: "Swensens", detail: "มูลค่า 100 บาท" },
     { id: "", label: "", detail: "" },
   ]);
   const [selectedDate, handleDateChange] = useState(() =>
@@ -114,24 +123,19 @@ function ManageReward() {
       // IsActived: true,
     };
 
-
     try {
       const registerReward = await Axios.post("/register-code", { data });
       let { codeURL, isSuccess } = registerReward.data;
-
       // dialogData.type = "ok";
       // dialogData.title = "Reward URL";
       // dialogData.status = 1;
       // dialogData.rewardURL = rewardURL;
-
-       if(isSuccess) {
+      if (isSuccess) {
         window.sessionStorage.setItem("url", JSON.stringify(codeURL));
-        history.push('/display-reward');
+        history.push("/display-reward");
       }
-
       // setDialogInfo(dialogData);
       console.log(registerReward);
-     
     } catch (error) {
       let { message, name } = error.response.data;
       // dialogData.type = "error";
@@ -140,7 +144,7 @@ function ManageReward() {
       // dialogData.rewardURL = message;
       // setDialogInfo(dialogData);
 
-      console.log("error res", );
+      console.log("error res");
     }
 
     // .then((res) => {
@@ -153,11 +157,20 @@ function ManageReward() {
       // const rewardList = await Axios.get("/reward-list");
       const rewardList = await Axios.get("/api/reward/list");
       let { rewardData } = rewardList.data;
+
       let buildOption = rewardData.map((info) => ({
         id: info.RewardId,
         label: info.Reward_Name,
         detail: info.Reward_Detail,
       }));
+
+      // let buildOption = [
+      //   {
+      //     id: "1",
+      //     label: "Swensens",
+      //     detail: "มูลค่า 100 บาท",
+      //   },
+      // ];
 
       console.log("handleFetchReward -> buildOption", buildOption);
       setRewardOption(buildOption);
@@ -216,21 +229,21 @@ function ManageReward() {
                 </span>
               )}
               value={rewardOption.label}
+              // value={
+              //   rewardOption.length < 2 ? rewardOption[0] : rewardOption.label
+              // }
               onChange={(_, data) => props.onChange(data)}
               renderInput={(params) => {
                 return (
                   <TextField
                     {...params}
-                    // InputProps={{
-                    //   ...params.InputProps,
-                    //   // classes: classesStyle
-                    // }}
                     id="outlined-search"
                     label="Select Reward"
                     type="text"
                     variant="outlined"
                     fullWidth
                     name="Remark"
+                    error={errors.rewardOpt ? true : false}
                   />
                 );
               }}
@@ -239,8 +252,13 @@ function ManageReward() {
           name="rewardOpt"
           control={control}
           defaultValue=""
+          // defaultValue={rewardOption[0]}
           rules={{ required: true }}
         />
+        {errors.rewardOpt && errors.rewardOpt.type === "required" && (
+          // <div>{console.log(errors)}</div>
+          <FormHelperText error>กรุณาเลือกประเภทของรางวัล</FormHelperText>
+        )}
         <TextField
           id="outlined-search"
           label="First Name"
@@ -335,7 +353,7 @@ function ManageReward() {
         onClose={handleCloseDialog}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
-        classes={{paper: classes.dialogCustom}}
+        classes={{ paper: classes.dialogCustom }}
       >
         <DialogTitle id="alert-dialog-slide-title">{`${dialogInfo.title}`}</DialogTitle>
         <DialogContent>
