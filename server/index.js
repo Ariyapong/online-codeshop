@@ -44,7 +44,7 @@ if (ENV === "production") {
 models.sequelize.sync().then((res) => {
   //   console.log(`PostgreSQL connected ${err}.`);
   app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}!`);
+    console.log(`Example app listening on port ${PORT}!!!!!`);
   });
   //   console.log(`PostgreSQL connected`, res);
 });
