@@ -151,7 +151,7 @@ function ManageReward() {
   const fetchRewardOption = async () => {
     try {
       // const rewardList = await Axios.get("/reward-list");
-      const rewardList = await Axios.get("/reward/list");
+      const rewardList = await Axios.get("/api/reward/list");
       let { rewardData } = rewardList.data;
       let buildOption = rewardData.map((info) => ({
         id: info.RewardId,
