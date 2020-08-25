@@ -3,9 +3,69 @@
   width: 100%;
   padding: 5%;
 
-}
-@media screen and (min-width: 768px) {
-    .submitFormLink {
-      padding: 5% 10%;
+  .pageSubject {
+    position: relative;
+    padding: 0.7em 0;
+
+    .subjectText {
+      position: relative;
+      display: inline-block;
+      // vertical-align: middle;
+      // margin-left: 1%;
+      .regisIcon {
+        width: 40px;
+        position: absolute;
+        left: -44px;
+        top: -13px;
+        // display: inline-block;
+        // vertical-align: middle;
+        // margin-right: 1%;
+      }
     }
   }
+
+  .statContainer {
+    width: 100%;
+    padding: 2% 2%;
+
+    .statContentBlock {
+      border: 3px groove #697c9e;
+      border-radius: 5px;
+      text-align: center;
+      padding: 1%;
+      .content {
+        width: 33.33%;
+        display: inline-block;
+        padding: 0 1.5%;
+        .headLine {
+          font-size: 0.5rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .submitFormLink {
+    padding: 5% 10%;
+    .pageSubject {
+      .subjectText {
+        .regisIcon {
+          width: 60px;
+          left: -70px;
+          top: -13px;
+        }
+      }
+    }
+    .statContainer {
+      .statContentBlock {
+        .content {
+          .headLine {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}

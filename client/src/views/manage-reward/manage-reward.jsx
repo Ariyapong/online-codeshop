@@ -24,6 +24,7 @@ import { format } from "date-fns";
 import _ from "lodash/fp";
 import { useHistory } from "react-router-dom";
 /**lib*/
+import regis from "../../assets/images/regis-img.png";
 
 /******component styles(start) */
 const useStyles = makeStyles(() => ({
@@ -84,16 +85,19 @@ function ManageReward() {
   // const classesStyle = stylesSelect();
   const classes = useStyles();
   const history = useHistory();
+
   /**state data(start)*/
   const { handleSubmit, control, errors, watch, register } = useForm();
   const [rewardOption, setRewardOption] = useState([
     // { id: "1", label: "Swensens", detail: "มูลค่า 100 บาท" },
     { id: "", label: "", detail: "" },
   ]);
+  const [stat, setStat] = useState("");
   const [selectedDate, handleDateChange] = useState(() =>
     format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
   );
   const [open, setOpen] = useState(false);
+  const [renderStat, setRenderStat] = useState("");
   // const [rewardLink, setRewardLink] = useState("");
   const [dialogInfo, setDialogInfo] = useState({
     type: "",
@@ -104,6 +108,8 @@ function ManageReward() {
 
   /**state data(end) */
 
+  const { rewardOpt } = watch(["rewardOpt"]);
+
   useEffect(() => {
     fetchRewardOption();
     // window.sessionStorage.removeItem("url");
@@ -112,6 +118,76 @@ function ManageReward() {
   useEffect(() => {
     if (dialogInfo.status) handleOpenDialog();
   }, [dialogInfo]);
+
+  useEffect(() => {
+    if (rewardOpt) {
+      manageDBStat(stat, rewardOpt.id);
+    }
+  }, [rewardOpt]);
+
+  const manageDBStat = (data, target) => {
+    if (data) {
+      //find target dataset
+      const totalReward = data.total.filter(
+        (element) => element.RewardId === target
+      );
+      const availableReward = data.available.filter(
+        (element) => element.RewardId === target
+      );
+      const usageReward = data.usage.filter(
+        (element) => element.RewardId === target
+      );
+
+      // console.log(
+      //   "manageDBStat -> totalReward",
+      //   totalReward,
+      //   "target id :",
+      //   target
+      // );
+      // console.log(
+      //   "manageDBStat -> availableReward",
+      //   availableReward,
+      //   "target id :",
+      //   target
+      // );
+      // console.log("usageReward reward !", usageReward, "target id :", target);
+
+      setRenderStat(renderDBStat(totalReward, availableReward, usageReward));
+    }
+  };
+
+  const renderDBStat = (totalReward, availableReward, usageReward) => (
+    <div className={styles.statContainer}>
+      <div className={styles.statContentBlock}>
+        <div className={styles.content}>
+          <div className={styles.borderFrame}>
+            <div className={styles.headLine}>Total</div>
+            <div className={styles.stat}>
+              {totalReward.length > 0 ? totalReward[0].rewardTotal : 0}
+            </div>
+          </div>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.borderFrame}>
+            <div className={styles.headLine}>Usage</div>
+            <div className={styles.stat}>
+              {usageReward.length > 0 ? usageReward[0].usageTotal : 0}
+            </div>
+          </div>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.borderFrame}>
+            <div className={styles.headLine}>Available</div>
+            <div className={styles.stat}>
+              {availableReward.length > 0
+                ? availableReward[0].availableReward
+                : 0}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   /**handle Func(start) */
   const handleSubmitForm = async (formData) => {
@@ -156,7 +232,7 @@ function ManageReward() {
     try {
       // const rewardList = await Axios.get("/reward-list");
       const rewardList = await Axios.get("/api/reward/list");
-      let { rewardData } = rewardList.data;
+      let { rewardData, stat } = rewardList.data;
 
       let buildOption = rewardData.map((info) => ({
         id: info.RewardId,
@@ -174,6 +250,7 @@ function ManageReward() {
 
       console.log("handleFetchReward -> buildOption", buildOption);
       setRewardOption(buildOption);
+      setStat(stat);
 
       // console.log(typeof rewardList.data);
       // if(registerReward) {
@@ -203,13 +280,21 @@ function ManageReward() {
 
   return (
     <div className={styles.submitFormLink}>
-      <p className="font-dy5">Registration Rewardseewsdfsdf</p>
+      <div className={styles.pageSubject}>
+        <div className={`font-dy5 ${styles.subjectText}`}>
+          <div className={styles.regisIcon}>
+            <img src={regis} className="img-width elemblock" alt="" />
+          </div>
+          Registration Reward
+        </div>
+      </div>
       <form
         className={`${classes.root} customForm`}
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit(handleSubmitForm)}
       >
+        {renderStat}
         <Controller
           render={(props) => (
             <Autocomplete
@@ -259,6 +344,7 @@ function ManageReward() {
           // <div>{console.log(errors)}</div>
           <FormHelperText error>กรุณาเลือกประเภทของรางวัล</FormHelperText>
         )}
+
         <TextField
           id="outlined-search"
           label="First Name"
@@ -335,7 +421,6 @@ function ManageReward() {
           inputVariant="outlined"
           className={classes.dateTimePickerWidth}
         />
-
         <Button
           variant="outlined"
           color="secondary"

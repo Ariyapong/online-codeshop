@@ -81,7 +81,7 @@ exports.rewardGet = async (req, res) => {
         group: ["RewardId"],
       });
 
-      const avalaibleReward = await CodeOnline.findAll({
+      const availableReward = await CodeOnline.findAll({
         where: {
           Redeemed_TS: null,
           IsActived: true,
@@ -91,7 +91,7 @@ exports.rewardGet = async (req, res) => {
           "RewardId",
           [
             db.sequelize.fn("COUNT", db.sequelize.col("RewardId")),
-            "avaliableReward",
+            "availableReward",
           ],
         ],
         group: ["RewardId"],
@@ -102,7 +102,7 @@ exports.rewardGet = async (req, res) => {
         stat: {
           total: resultTotal,
           usage: usageTotal,
-          avaliable: avalaibleReward
+          available: availableReward
         },
         isSuccess: true,
       };
