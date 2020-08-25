@@ -34,18 +34,18 @@ app.use("/", codeRegisRouter);
 app.use("/api/reward", rewardRouter);
 app.use("/users", usersRouter);
 
-// if (ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../client/build")));
-//   app.use((req, res) => {
-//     res.sendFile(path.join(__dirname, "../client/build/index.html"));
-//   });
-// }
-
-// if (ENV === "production") {}
+if (ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
   app.use((req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
+}
+
+// // if (ENV === "production") {}
+//   app.use(express.static(path.join(__dirname, "../client/build")));
+//   app.use((req, res) => {
+//     res.sendFile(path.join(__dirname, "../client/build/index.html"));
+//   });
 
 
 models.sequelize.sync().then((res) => {
