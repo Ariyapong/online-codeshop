@@ -203,7 +203,7 @@ function ManageReward() {
 
   return (
     <div className={styles.submitFormLink}>
-      <p className="font-dy5">Registration Reward</p>
+      <p className="font-dy5">Registration Rewards</p>
       <form
         className={`${classes.root} customForm`}
         noValidate
