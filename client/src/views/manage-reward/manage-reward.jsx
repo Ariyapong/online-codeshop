@@ -285,7 +285,7 @@ function ManageReward() {
           <div className={styles.regisIcon}>
             <img src={regis} className="img-width elemblock" alt="" />
           </div>
-          Registration Reward
+          Registration Rewarddee
         </div>
       </div>
       <form

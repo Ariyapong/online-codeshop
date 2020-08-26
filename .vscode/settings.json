@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/ae786b77-f48a-4210-9196-8f9d00751214/resourceGroups/ChocoCRM-Development-Linux-v2/providers/Microsoft.Web/sites/dev-code-shop",
+    "appService.deploySubpath": "."
+}

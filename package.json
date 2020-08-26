@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "retail-codeshop-fullstack",
   "main": "index.js",
-  "engines": {
-    "node": "12.14.1",
-    "npm": "6.13.4"
-  },
   "scripts": {
+    "start": "node server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "npm run start --prefix client",
     "server": "nodemon server",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "build:azure": "cd client && npm install && npm rebuild node-sass && npm run build"
   },
   "repository": {
     "type": "git",
