@@ -4,8 +4,7 @@
   "description": "retail-codeshop-fullstack",
   "main": "index.js",
   "engines": {
-    "node": "12.14.1",
-    "npm": "6.13.4"
+    "node": "12.x"
   },
   "scripts": {
     "start": "node server/index.js",
