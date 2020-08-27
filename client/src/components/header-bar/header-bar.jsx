@@ -5,7 +5,7 @@ function HeaderBar() {
   return (
     <div id="header" className={styles.headBarWrap}>
       <div className={styles.topBar}>
-        <div className={`${styles.topTitle} font-t-1 font-z-2`}>Choco CRM</div>
+        <div className={`${styles.topTitle} font-t-1 font-dy6`}>Choco CRM</div>
       </div>
       {/* <div className="top-detail-rewardlist">
         <strong className="username-rewarndlist font-t-2 font-z-2">

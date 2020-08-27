@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { Button } from "@material-ui/core";
 import styles from "./display-reward-style.module.scss";
+import { useHistory } from "react-router-dom";
 // import 'react-virtualized/styles.css';
 
 function DisplayReward() {
+  const history = useHistory();
   const [contentURL, setContentURL] = useState(
     JSON.parse(window.sessionStorage.getItem("url"))
   );
+
+  useEffect(() => {
+    return () => {
+      window.sessionStorage.removeItem("url");
+    };
+  }, []);
 
   const Row = ({ index, style }) => (
     <div className={index % 2 ? "ListItemOdd" : "ListItemEven"} style={style}>
@@ -63,10 +71,10 @@ function DisplayReward() {
                 height={height}
                 // itemCount={1000}
                 itemCount={contentURL.length}
-                itemSize={110}
+                itemSize={125}
                 width={width}
+                // style={{height: '25%'}}
               >
-                {/* {Row} */}
                 {Content}
               </List>
             )}
@@ -78,8 +86,7 @@ function DisplayReward() {
         variant="outlined"
         color="secondary"
         size="small"
-        // className={classes.customButton}
-        // type="submit"
+        onClick={() => history.push("manage-reward")}
       >
         Register Code
       </Button>

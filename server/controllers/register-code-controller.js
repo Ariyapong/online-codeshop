@@ -55,7 +55,7 @@ exports.regis = async (req, res) => {
       if (updatedReward.length > 0) {
         let rewardURL = updatedReward.map(
           (data) =>
-            `https://www.code-shop.chococrm.com/reward?campaign1=${data.CampaignKey1}&campaign2=${data.CampaignKey2}`
+            `https://www.code-shop.chococrm.com/reward/digital?campaign1=${data.CampaignKey1}&campaign2=${data.CampaignKey2}`
         );
 
         //wrap before send to Frontend

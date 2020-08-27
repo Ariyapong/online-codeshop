@@ -96,6 +96,8 @@ function ManageReward() {
   const [selectedDate, handleDateChange] = useState(() =>
     format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
   );
+  const [dateErr, setDateErr] = useState("");
+  // const [selectedDate, handleDateChange] = useState(new Date("2019-01-01T18:54"));
   const [open, setOpen] = useState(false);
   const [renderStat, setRenderStat] = useState("");
   // const [rewardLink, setRewardLink] = useState("");
@@ -261,11 +263,15 @@ function ManageReward() {
     }
   };
 
-  const handleDateChangeSet = (date) => {
-    console.log("date selected -->", date);
-    let newDateSend = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+  const handleDateChangeSet = (date, value) => {
+    const checkIfValid = `${date}`;
+    if (checkIfValid === "Invalid Date") setDateErr(true);
+    else {
+      let newDateSend = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+      handleDateChange(newDateSend);
+      setDateErr(false);
+    }
 
-    handleDateChange(newDateSend);
   };
 
   const handleOpenDialog = () => {
@@ -281,11 +287,11 @@ function ManageReward() {
   return (
     <div className={styles.submitFormLink}>
       <div className={styles.pageSubject}>
-        <div className={`font-dy5 ${styles.subjectText}`}>
+        <div className={`${styles.subjectText}`}>
           <div className={styles.regisIcon}>
             <img src={regis} className="img-width elemblock" alt="" />
           </div>
-          Registration Rewarddee
+          Registration Reward
         </div>
       </div>
       <form
@@ -417,10 +423,15 @@ function ManageReward() {
           onError={console.log}
           minDate={new Date("2018-01-01T00:00")}
           // format="yyyy/MM/dd hh:mm a"
-          format="yyyy/MM/dd hh:mm:ss"
+          format="yyyy/MM/dd hh:mm a"
           inputVariant="outlined"
           className={classes.dateTimePickerWidth}
+          allowKeyboardControl={true}
         />
+        {dateErr && (
+          // <div>{console.log(errors)}</div>
+          <FormHelperText error>Invalid date </FormHelperText>
+        )}
         <Button
           variant="outlined"
           color="secondary"

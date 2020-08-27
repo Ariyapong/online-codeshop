@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'DB Helvethaica X 45 Li';
+    src: url('subset-DBHelvethaicaX-45Li.woff2') format('woff2'),
+        url('subset-DBHelvethaicaX-45Li.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DB Helvethaica X 55';
+    src: url('subset-DBHelvethaicaX-55Regular.woff2') format('woff2'),
+        url('subset-DBHelvethaicaX-55Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* font family classes */
+.font-t-1 {
+    font-family: 'DB Helvethaica X 45 Li';
+}
+.font-t-2 {
+    font-family: 'DB Helvethaica X 55';
+}
+
+/* font size classes */
+.font-tabzs-1 {
+    font-size: 4vw;
+}
+.font-zs-1 {
+    font-size: 14px;
+}
+.font-zs-2 {
+    font-size: 16px;
+}
+.font-z-1 {
+    font-size: 18px;
+}
+.font-z-2 {
+    font-size: 20px;
+}
+.font-z-3 {
+    font-size: 22px;
+}
+.font-z-4 {
+    font-size: 24px;
+}
+.font-z-5 {
+    font-size: 26px;
+}
+.font-z-6{
+    font-size: 28px;
+}
+
+.font-small-dy2 {
+    font-size: 2vw;
+}
+.font-sdy2-5 {
+    font-size: 2.5vw;
+}
+.font-sdy3 {
+    font-size: 3vw;
+}
+.font-sdy3-5 {
+    font-size: 3.5vw;
+}
+.font-sdy4 {
+    font-size: 4vw;
+}
+.font-sdy4-5 {
+    font-size: 4.5vw;
+}
+.font-dy0 {
+    font-size: 5vw;
+}
+.font-dy1 {
+    font-size: 5.5vw;
+}
+.font-dy2 {
+    font-size: 6vw;
+}
+.font-dy3 {
+    font-size: 6.5vw;
+}
+.font-dy4 {
+    font-size: 7vw;
+}
+.font-dy5 {
+    font-size: 7.5vw;
+}
+.font-dy6 {
+    font-size: 8vw;
+}
+.font-dy7 {
+    font-size: 8.5vw;
+}
+.font-dy8 {
+    font-size: 9vw;
+}
+.font-dy9 {
+    font-size: 9.5vw;
+}
+.font-dy10 {
+    font-size: 10vw;
+}

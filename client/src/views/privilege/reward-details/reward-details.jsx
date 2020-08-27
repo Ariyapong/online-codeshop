@@ -155,7 +155,6 @@ function RewardDetails({ setFooter }) {
   async function redeemReward(queryValue) {
     handleChangeLoading(true);
     setLoading(true);
-    // Myswal.close();
 
     Axios.get(
       `/api/reward/detail?campaign1=${queryValue.campaign1}&campaign2=${queryValue.campaign2}`
@@ -310,7 +309,7 @@ function RewardDetails({ setFooter }) {
       {rewardType === "e-code" && (
         <>
           <div className={styles.details}>
-            <div className={`${styles.lineDetail} font-t-1 font-dy0`}>
+            <div className={`${styles.lineDetail} font-t-1 font-dy2`}>
               BARCODE
             </div>
           </div>
@@ -334,7 +333,7 @@ function RewardDetails({ setFooter }) {
                   id="mycanvas"
                   className={`${styles.barCodeFrame}`}
                 ></canvas>
-                <div className="font-t-1 font-t-1">
+                <div className="font-t-1 font-z-2">
                   {barCodeText.toUpperCase()}
                 </div>
               </div>
@@ -362,7 +361,7 @@ function RewardDetails({ setFooter }) {
 
           <div
             id="rewardD"
-            className={`${styles.moreDetails} font-t-1 custom-t-16`}
+            className={`${styles.moreDetails} font-t-1 font-z-1`}
           >
             <div className={`${styles.textWrap}`}>
               <label htmlFor="term">
