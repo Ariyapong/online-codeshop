@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./manage-reward-style.module.scss";
+import { filterInputNumber } from "../../helpers/UtilFunction";
 
 /**lib*/
 import {
@@ -109,6 +110,7 @@ function ManageReward() {
   });
 
   /**state data(end) */
+  const regex = RegExp(/[^0-9]+$/);
 
   const { rewardOpt } = watch(["rewardOpt"]);
 
@@ -271,7 +273,6 @@ function ManageReward() {
       handleDateChange(newDateSend);
       setDateErr(false);
     }
-
   };
 
   const handleOpenDialog = () => {
@@ -388,7 +389,13 @@ function ManageReward() {
           inputProps={{ maxLength: 10 }}
           error={errors.MobileNo ? true : false}
           name="MobileNo"
-          inputRef={register({ required: true, minLength: 10 })}
+          inputRef={register({
+            required: true,
+            minLength: 10,
+            // pattern: /\D/
+            // validate: (value) => console.log("result value", regex.test(value)),
+            validate: (value) => regex.test(value) === false || "กรุณาใส่เบอร์โทรศัพท์เป็นตัวเลขเท่านั้น",
+          })}
         />
         {errors.MobileNo && errors.MobileNo.type === "required" && (
           // <div>{console.log(errors)}</div>
@@ -397,6 +404,9 @@ function ManageReward() {
         {errors.MobileNo && errors.MobileNo.type === "minLength" && (
           // <div>{console.log(errors)}</div>
           <FormHelperText error>กรุณาใส่เบอร์โทรศัพท์ 10 หลัก </FormHelperText>
+        )}
+        {errors.MobileNo && errors.MobileNo.type === "validate" && (
+          <FormHelperText error>กรุณาใส่เบอร์โทรศัพท์เป็นตัวเลขเท่านั้น </FormHelperText>
         )}
         <TextField
           id="outlined-search"
@@ -414,8 +424,15 @@ function ManageReward() {
           variant="outlined"
           fullWidth
           name="PurchasedAmount"
-          inputRef={register()}
+          inputRef={register({ required: true })}
+          error={errors.PurchasedAmount ? true : false}
         />
+        {errors.PurchasedAmount && errors.PurchasedAmount.type === "required" && (
+          // <div>{console.log(errors)}</div>
+          <FormHelperText error>
+            กรุณาใส่จำนวนของรางวัลที่ลูกค้าซื้อ{" "}
+          </FormHelperText>
+        )}
         <KeyboardDateTimePicker
           value={selectedDate}
           onChange={handleDateChangeSet}
