@@ -2,6 +2,9 @@ const db = require("../models");
 const CodeOnline = db.code;
 const RewardOnline = db.reward;
 const Op = db.Sequelize.Op;
+const dotenv = require("dotenv");
+dotenv.config();
+
 
 // Create controller for GET request to '/code-register'
 exports.regis = async (req, res) => {
@@ -26,7 +29,9 @@ exports.regis = async (req, res) => {
       limit: PurchasedAmount,
     });
 
-    if (findAvalibleCode !== null) {
+    if (findAvalibleCode !== null && findAvalibleCode.count !== 0) {
+
+      console.log('findAvalibleCode', findAvalibleCode)
 
       // update data to db by id
       let { rows } = findAvalibleCode;
@@ -55,7 +60,7 @@ exports.regis = async (req, res) => {
       if (updatedReward.length > 0) {
         let rewardURL = updatedReward.map(
           (data) =>
-            `https://www.code-shop.chococrm.com/reward/digital?campaign1=${data.CampaignKey1}&campaign2=${data.CampaignKey2}`
+            `${process.env.RW_URL}/reward/digital?campaign1=${data.CampaignKey1}&campaign2=${data.CampaignKey2}`
         );
 
         //wrap before send to Frontend
@@ -69,7 +74,8 @@ exports.regis = async (req, res) => {
         throw new UserException(
           // "Can't find any item that match your specified target",
           "Can not find any code that match your request",
-          "UpdateCodeException"
+          "UpdateCodeException",
+          "co-shop-002"
         );
       }
 
@@ -78,13 +84,14 @@ exports.regis = async (req, res) => {
     } else {
       throw new UserException(
         // "Can't find any item that match your specified target",
-        "There are no any code avaliable for your request",
-        "RegisterCodeException"
+        "There is not any code avaliable for your request",
+        "RegisterCodeException",
+        "co-shop-001"
       );
       // return res.send(error);
     }
   } catch (error) {
-    console.log("error some!!==>", error);
+    // console.log("error some!!==>", error);
     let data = {
       ...error,
     };
@@ -94,15 +101,16 @@ exports.regis = async (req, res) => {
   
 };
 
-function UserException(message, exceptionName) {
+function UserException(message, exceptionName, codeError) {
   this.message = message;
   this.name = exceptionName;
+  this.errorCode = codeError;
 }
 
 // Make the exception convert to a pretty string when used as a string
 // (e.g., by the error console)
 UserException.prototype.toString = function () {
-  return `${this.name}: "${this.message}"`;
+  return `${this.name}[${this.errorCode}]: "${this.message}"`;
 };
 
 // const findTargetData = async () => {

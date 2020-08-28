@@ -88,7 +88,7 @@ function DisplayReward() {
         size="small"
         onClick={() => history.push("manage-reward")}
       >
-        Register Code
+        Back
       </Button>
     </div>
   );

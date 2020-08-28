@@ -110,7 +110,8 @@ function ManageReward() {
   });
 
   /**state data(end) */
-  const regex = RegExp(/[^0-9]+$/);
+  // const regex = RegExp(/[^0-9]+$/);
+  const regex = RegExp(/^\d+$/);
 
   const { rewardOpt } = watch(["rewardOpt"]);
 
@@ -217,14 +218,15 @@ function ManageReward() {
       // setDialogInfo(dialogData);
       console.log(registerReward);
     } catch (error) {
-      let { message, name } = error.response.data;
-      // dialogData.type = "error";
-      // dialogData.title = name;
-      // dialogData.status = 1;
-      // dialogData.rewardURL = message;
-      // setDialogInfo(dialogData);
+      let { message, name, errorCode } = error.response.data;
+      dialogData.type = "error";
+      dialogData.title = name;
+      dialogData.errorCode = errorCode;
+      dialogData.status = 1;
+      dialogData.rewardURL = message;
+      setDialogInfo(dialogData);
 
-      console.log("error res");
+      // console.log("error res");
     }
 
     // .then((res) => {
@@ -349,7 +351,7 @@ function ManageReward() {
         />
         {errors.rewardOpt && errors.rewardOpt.type === "required" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>กรุณาเลือกประเภทของรางวัล</FormHelperText>
+          <FormHelperText error>Please specify reward type</FormHelperText>
         )}
 
         <TextField
@@ -364,7 +366,7 @@ function ManageReward() {
         />
         {errors.FirstName && errors.FirstName.type === "required" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>กรุณาใส่ชื่อ </FormHelperText>
+          <FormHelperText error>Please enter customer first name </FormHelperText>
         )}
         <TextField
           id="outlined-search"
@@ -378,7 +380,7 @@ function ManageReward() {
         />
         {errors.LastName && errors.LastName.type === "required" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>กรุณาใส่นามสกุล </FormHelperText>
+          <FormHelperText error>Please enter customer last name </FormHelperText>
         )}
         <TextField
           id="outlined-search"
@@ -394,19 +396,19 @@ function ManageReward() {
             minLength: 10,
             // pattern: /\D/
             // validate: (value) => console.log("result value", regex.test(value)),
-            validate: (value) => regex.test(value) === false || "กรุณาใส่เบอร์โทรศัพท์เป็นตัวเลขเท่านั้น",
+            validate: (value) => regex.test(value) === true || "Please enter only number in this field",
           })}
         />
         {errors.MobileNo && errors.MobileNo.type === "required" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>กรุณาใส่เบอร์โทรศัพท์ </FormHelperText>
+          <FormHelperText error>Please enter customer mobile no. </FormHelperText>
         )}
         {errors.MobileNo && errors.MobileNo.type === "minLength" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>กรุณาใส่เบอร์โทรศัพท์ 10 หลัก </FormHelperText>
+          <FormHelperText error>Mobile no. should at least be 10 digits </FormHelperText>
         )}
         {errors.MobileNo && errors.MobileNo.type === "validate" && (
-          <FormHelperText error>กรุณาใส่เบอร์โทรศัพท์เป็นตัวเลขเท่านั้น </FormHelperText>
+          <FormHelperText error>Please enter only number in this field </FormHelperText>
         )}
         <TextField
           id="outlined-search"
@@ -430,7 +432,7 @@ function ManageReward() {
         {errors.PurchasedAmount && errors.PurchasedAmount.type === "required" && (
           // <div>{console.log(errors)}</div>
           <FormHelperText error>
-            กรุณาใส่จำนวนของรางวัลที่ลูกค้าซื้อ{" "}
+            Please specify customer qty. order{" "}
           </FormHelperText>
         )}
         <KeyboardDateTimePicker
@@ -468,7 +470,7 @@ function ManageReward() {
         aria-describedby="alert-dialog-slide-description"
         classes={{ paper: classes.dialogCustom }}
       >
-        <DialogTitle id="alert-dialog-slide-title">{`${dialogInfo.title}`}</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title" style={{color: "red"}}>{`Error (${dialogInfo.errorCode})`}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             {dialogInfo.rewardURL}
@@ -476,11 +478,11 @@ function ManageReward() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseDialog} color="secondary">
-            ปิด
+            Close
           </Button>
-          <Button onClick={handleCloseDialog} color="secondary">
+          {/* <Button onClick={handleCloseDialog} color="secondary">
             ตกลง
-          </Button>
+          </Button> */}
         </DialogActions>
       </Dialog>
       <Button
