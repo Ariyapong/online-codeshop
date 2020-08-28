@@ -1,9 +1,13 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 // const codeOnline = (sequelize, DataTypes) => {
 module.exports = (sequelize, DataTypes) => {
   // const CodeOnline = sequelize.define('BCRM_Retail_BuyCodeOnline', {
   // const CodeOnline = sequelize.define('BCRM_Retail_Sell2CodeOnline', {
 
   const CodeOnline = sequelize.define(
+    // `${process.env.CODE_DB}`,
     "BCRM_Retail_SellCodeOnline",
     // "BCRM_Retail_CodeOnlineShop_Prod",
     {
