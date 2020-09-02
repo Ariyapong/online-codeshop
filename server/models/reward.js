@@ -4,8 +4,8 @@ dotenv.config();
 // const codeOnline = (sequelize, DataTypes) => {
 module.exports = (sequelize, DataTypes) => {
   const RewardOnline = sequelize.define(
-    // `${process.env.RWDETAIL_DB}`,
-    "BCRM_Retail_RewardCodeOnline",
+    `${process.env.RWDETAIL_DB}`,
+    // "BCRM_Retail_RewardCodeOnline",
     // "BCRM_Retail_RewardDetail_Prod",
     {
       RewardId: {

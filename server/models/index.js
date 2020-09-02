@@ -13,8 +13,12 @@ const sequelize = new Sequelize(
   // "tony",
   // "YnWm6TqupHErXz2Yw7hrceSoH7icD6SESt7yfdEZuB9ZxhCcMLqnQLLDDTa2r8qx",
   {
-    host: "35.186.148.99",
-    port: 5432,
+    // host: "35.186.148.99",
+    // port: 5432,
+    // host: "dev.chococrm.com",
+    // port: 55443,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     dialect: "postgres",
     dialectOptions: {
       useUTC: false, //for reading from database
