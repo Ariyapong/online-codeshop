@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./manage-reward-style.module.scss";
 import { filterInputNumber } from "../../helpers/UtilFunction";
+import InputMask from "react-input-mask";
 
 /**lib*/
 import {
@@ -108,6 +109,7 @@ function ManageReward() {
     status: 0,
     rewardURL: "",
   });
+  const [phoneNo, setPhoneNo] = useState("");
 
   /**state data(end) */
   // const regex = RegExp(/[^0-9]+$/);
@@ -129,6 +131,11 @@ function ManageReward() {
       manageDBStat(stat, rewardOpt.id);
     }
   }, [rewardOpt]);
+
+  const handlePhoneNoChange = (event) => {
+    console.log("phone vluae", event.target);
+    setPhoneNo(event.target.value);
+  };
 
   const manageDBStat = (data, target) => {
     if (data) {
@@ -197,6 +204,11 @@ function ManageReward() {
   /**handle Func(start) */
   const handleSubmitForm = async (formData) => {
     console.log("Form Submit!!", formData);
+    let phoneResult = phoneNo.replace(/-/g,"");
+
+    // console.log("phone no ", phoneNo);
+    // console.log("phone no ", phoneResult);
+
     let dialogData = { ...dialogInfo };
     let data = {
       ...formData,
@@ -294,7 +306,7 @@ function ManageReward() {
           <div className={styles.regisIcon}>
             <img src={regis} className="img-width elemblock" alt="" />
           </div>
-          Registration Reward
+          Reward Registration
         </div>
       </div>
       <form
@@ -366,7 +378,9 @@ function ManageReward() {
         />
         {errors.FirstName && errors.FirstName.type === "required" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>Please enter customer first name </FormHelperText>
+          <FormHelperText error>
+            Please enter customer first name{" "}
+          </FormHelperText>
         )}
         <TextField
           id="outlined-search"
@@ -380,35 +394,56 @@ function ManageReward() {
         />
         {errors.LastName && errors.LastName.type === "required" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>Please enter customer last name </FormHelperText>
+          <FormHelperText error>
+            Please enter customer last name{" "}
+          </FormHelperText>
         )}
-        <TextField
-          id="outlined-search"
-          label="Mobile No."
-          type="tel"
-          variant="outlined"
-          fullWidth
-          inputProps={{ maxLength: 10 }}
-          error={errors.MobileNo ? true : false}
-          name="MobileNo"
-          inputRef={register({
-            required: true,
-            minLength: 10,
-            // pattern: /\D/
-            // validate: (value) => console.log("result value", regex.test(value)),
-            validate: (value) => regex.test(value) === true || "Please enter only number in this field",
-          })}
-        />
+        <InputMask
+          mask="999-999-9999"
+          onChange={handlePhoneNoChange}
+          value={phoneNo}
+          disabled={false}
+          maskChar="_"
+        >
+          {() => (
+            <TextField
+              id="outlined-search"
+              label="Mobile No."
+              type="tel"
+              variant="outlined"
+              fullWidth
+              // inputProps={{ maxLength: 10 }}
+              error={errors.MobileNo ? true : false}
+              name="MobileNo"
+              inputRef={register({
+                required: true,
+                minLength: 10,
+                // // pattern: /\D/
+                // // validate: (value) => console.log("result value", regex.test(value)),
+                // validate: (value) =>
+                //   regex.test(value) === true ||
+                //   "Please enter only number in this field",
+              })}
+            />
+          )}
+        </InputMask>
+
         {errors.MobileNo && errors.MobileNo.type === "required" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>Please enter customer mobile no. </FormHelperText>
+          <FormHelperText error>
+            Please enter customer mobile no.{" "}
+          </FormHelperText>
         )}
         {errors.MobileNo && errors.MobileNo.type === "minLength" && (
           // <div>{console.log(errors)}</div>
-          <FormHelperText error>Mobile no. should at least be 10 digits </FormHelperText>
+          <FormHelperText error>
+            Mobile no. should at least be 10 digits{" "}
+          </FormHelperText>
         )}
         {errors.MobileNo && errors.MobileNo.type === "validate" && (
-          <FormHelperText error>Please enter only number in this field </FormHelperText>
+          <FormHelperText error>
+            Please enter only number in this field{" "}
+          </FormHelperText>
         )}
         <TextField
           id="outlined-search"
@@ -426,7 +461,12 @@ function ManageReward() {
           variant="outlined"
           fullWidth
           name="PurchasedAmount"
-          inputRef={register({ required: true })}
+          inputRef={register({
+            required: true,
+            validate: (value) =>
+              regex.test(value) === true ||
+              "Please enter only number in this field",
+          })}
           error={errors.PurchasedAmount ? true : false}
         />
         {errors.PurchasedAmount && errors.PurchasedAmount.type === "required" && (
@@ -435,6 +475,12 @@ function ManageReward() {
             Please specify customer qty. order{" "}
           </FormHelperText>
         )}
+        {errors.PurchasedAmount &&
+          errors.PurchasedAmount.type === "validate" && (
+            <FormHelperText error>
+              Please enter only number in this field{" "}
+            </FormHelperText>
+          )}
         <KeyboardDateTimePicker
           value={selectedDate}
           onChange={handleDateChangeSet}
@@ -470,7 +516,10 @@ function ManageReward() {
         aria-describedby="alert-dialog-slide-description"
         classes={{ paper: classes.dialogCustom }}
       >
-        <DialogTitle id="alert-dialog-slide-title" style={{color: "red"}}>{`Error (${dialogInfo.errorCode})`}</DialogTitle>
+        <DialogTitle
+          id="alert-dialog-slide-title"
+          style={{ color: "red" }}
+        >{`Error (${dialogInfo.errorCode})`}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             {dialogInfo.rewardURL}
