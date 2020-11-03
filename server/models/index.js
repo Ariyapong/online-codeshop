@@ -17,6 +17,7 @@ const sequelize = new Sequelize(
     // port: 5432,
     // host: "dev.chococrm.com",
     // port: 55443,
+
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: "postgres",
