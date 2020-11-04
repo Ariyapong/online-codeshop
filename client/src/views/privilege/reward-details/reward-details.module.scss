@@ -23,6 +23,10 @@
       // padding: 4% 12% 3%;
       overflow-x: scroll;
 
+      .codeText {
+        font-size: 3.5em;
+      }
+
       .displayBarCodeWrap {
         white-space: nowrap;
         .inlineBarcode {
@@ -39,15 +43,13 @@
         display: inline-block;
       }
       .controlPanel {
-
         .displayText {
           margin: 0 14px;
           display: inline-block;
           vertical-align: middle;
           // font-size: 24px;
-       }
+        }
       }
-
     }
   }
 

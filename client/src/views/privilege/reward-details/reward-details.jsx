@@ -310,7 +310,7 @@ function RewardDetails({ setFooter }) {
         <>
           <div className={styles.details}>
             <div className={`${styles.lineDetail} font-t-1 font-dy2`}>
-              BARCODE
+              CODE
             </div>
           </div>
           <div className={styles.frameBarCode}>
@@ -329,11 +329,11 @@ function RewardDetails({ setFooter }) {
                 ))}
               </div> */}
               <div id="controlFade" className="fade-tab">
-                <canvas
+                {/* <canvas
                   id="mycanvas"
                   className={`${styles.barCodeFrame}`}
-                ></canvas>
-                <div className="font-t-1 font-z-2">
+                ></canvas> */}
+                <div className={`font-t-1 ${styles.codeText}`}>
                   {barCodeText.toUpperCase()}
                 </div>
               </div>

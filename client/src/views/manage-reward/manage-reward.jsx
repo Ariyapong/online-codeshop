@@ -312,7 +312,7 @@ function ManageReward() {
               disableClearable
               options={rewardOption}
               getOptionLabel={(option) => {
-                return option.label;
+                return `${option.label} ${option.detail}`;
               }}
               getOptionSelected={(option) => {
                 return option;
