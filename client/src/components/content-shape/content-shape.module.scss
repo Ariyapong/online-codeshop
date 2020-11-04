@@ -30,7 +30,8 @@
     .frameImg {
       // width: 50%;
       width: 85%;
-      margin: 0 auto;
+      // margin: 0 auto;
+      margin: 5px auto;
       // padding: 0 5%;
       position: relative;
       .displayImg {
@@ -46,7 +47,7 @@
 
     @media screen and (max-width: 420px) and (min-height: 800px) {
       .rewardContentWrap {
-        padding-top:5%;
+        padding-top: 5%;
         .frameImg {
           width: 85%;
         }
