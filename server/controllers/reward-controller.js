@@ -159,6 +159,7 @@ exports.rewardDetail = async (req, res) => {
         codeData: {
           CodeOnlineId: result.Code,
           Code: result.Code,
+          DisplayType: result.Extra_Data
         },
       };
 

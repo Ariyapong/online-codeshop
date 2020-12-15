@@ -7,6 +7,7 @@ import styles from "./reward-details.module.scss";
 import Axios from "../../../helpers/API/my-axios";
 import AxiosOri from "axios";
 import bwipjs from "bwip-js";
+import { QRCode } from "react-qr-svg";
 // import Swal from "sweetalert2";
 // import withReactContent from "sweetalert2-react-content";
 // import LoadingScreen from 'react-loading-screen';
@@ -151,7 +152,6 @@ function RewardDetails({ setFooter }) {
   //   // redeemReward();
   // }
 
-
   async function redeemReward(queryValue) {
     handleChangeLoading(true);
     setLoading(true);
@@ -167,7 +167,7 @@ function RewardDetails({ setFooter }) {
           Reward_Name,
           Reward_Type,
           Reward_Detail,
-          TermCondition
+          TermCondition,
         } = response.data.rewardDetail;
 
         let detail = {
@@ -175,13 +175,17 @@ function RewardDetails({ setFooter }) {
           NameTh: Reward_Name,
           SubNameTh: Reward_Type,
           DetailTh: Reward_Detail,
-          TermsAndCondsTh : TermCondition
+          TermsAndCondsTh: TermCondition,
         };
+
+        console.log("ExtraData ===>", response.data.codeData.DisplayType);
+
         Codes.push(response.data.codeData);
         console.log("Codes model", Codes);
         // setName(address.firstName + " " + address.lastName);
         setDetail(detail);
         // if (Redemption.Codes.length < 2) setDisplayControl("hide");
+
         setSlotDisplayBarcode(Codes);
         setCodeIndex(0);
         setCodesLenght(0);
@@ -309,9 +313,7 @@ function RewardDetails({ setFooter }) {
       {rewardType === "e-code" && (
         <>
           <div className={styles.details}>
-            <div className={`${styles.lineDetail} font-t-1 font-dy2`}>
-              CODE
-            </div>
+            <div className={`${styles.lineDetail} font-t-1 font-dy2`}>CODE</div>
           </div>
           <div className={styles.frameBarCode}>
             <div className={styles.displayBarcode}>
@@ -336,8 +338,16 @@ function RewardDetails({ setFooter }) {
                 <div className={`font-t-1 ${styles.codeText}`}>
                   {barCodeText.toUpperCase()}
                 </div>
-              </div>
 
+                {/* <QRCode
+                  bgColor="#FFFFFF"
+                  style={{ width: 120 }}
+                  fgColor="#000000"
+                  level="Q"
+                  // value={rewardCode}
+                  value={data.code}
+                /> */}
+              </div>
               <div className={`${styles.controlPanel} ${displayControl}`}>
                 <NavigateBTN
                   action="prev"
