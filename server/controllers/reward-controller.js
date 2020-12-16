@@ -109,7 +109,7 @@ exports.rewardGet = async (req, res) => {
 
       // res.send(usageTotal);
       res.send(data);
-      console.log("debug2", resultTotal);
+      // console.log("debug2", resultTotal);
     } else {
       throw new CodeException(
         // "Can't find any item that match your specified target",
@@ -154,12 +154,15 @@ exports.rewardDetail = async (req, res) => {
         },
       });
 
+      // console.log("result ===> ", result);
+
       let data = {
         rewardDetail: resultRewardDetail,
         codeData: {
           CodeOnlineId: result.Code,
           Code: result.Code,
-          DisplayType: result.Extra_Data
+          DisplayType: result.DisplayStatus,
+          DisplayTypeDesc: result.DisplayDescription,
         },
       };
 

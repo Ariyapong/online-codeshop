@@ -77,7 +77,7 @@ function RewardDetails({ setFooter }) {
 
   function getParamUrl() {
     let getQueryVar = queryString.parse(location);
-    console.log("query param", getQueryVar);
+    // console.log("query param", getQueryVar);
 
     //bypass flow redeem reward
     redeemReward(getQueryVar);
@@ -160,7 +160,7 @@ function RewardDetails({ setFooter }) {
       `/api/reward/detail?campaign1=${queryValue.campaign1}&campaign2=${queryValue.campaign2}`
     )
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         let Codes = [];
         let {
           ImageURL,
@@ -178,19 +178,22 @@ function RewardDetails({ setFooter }) {
           TermsAndCondsTh: TermCondition,
         };
 
-        console.log("ExtraData ===>", response.data.codeData.DisplayType);
+        // console.log("DisplayType ===>", response.data.codeData.DisplayType);
 
         Codes.push(response.data.codeData);
-        console.log("Codes model", Codes);
+        // console.log("Codes model", Codes);
         // setName(address.firstName + " " + address.lastName);
         setDetail(detail);
         // if (Redemption.Codes.length < 2) setDisplayControl("hide");
+
+        // console.log("Codes ===>", Codes);
 
         setSlotDisplayBarcode(Codes);
         setCodeIndex(0);
         setCodesLenght(0);
 
         injectCodes("start", Codes, 0);
+
         handleChangeLoading(false);
         setLoading(false);
       })
@@ -336,17 +339,31 @@ function RewardDetails({ setFooter }) {
                   className={`${styles.barCodeFrame}`}
                 ></canvas> */}
                 <div className={`font-t-1 ${styles.codeText}`}>
-                  {barCodeText.toUpperCase()}
+                  {slotDisplayBarcode.length === 1 &&
+                    slotDisplayBarcode[0].DisplayType === null && (
+                      <>{barCodeText.toUpperCase()}</>
+                    )}
                 </div>
-
-                {/* <QRCode
-                  bgColor="#FFFFFF"
-                  style={{ width: 120 }}
-                  fgColor="#000000"
-                  level="Q"
-                  // value={rewardCode}
-                  value={data.code}
-                /> */}
+                <div className={`font-t-1 ${styles.codeText}`}>
+                  {slotDisplayBarcode.length === 1 &&
+                    slotDisplayBarcode[0].DisplayType === "2" && (
+                      <canvas
+                        id="mycanvas"
+                        className={`${styles.barCodeFrame}`}
+                      ></canvas>
+                    )}
+                </div>
+                {slotDisplayBarcode.length === 1 &&
+                  slotDisplayBarcode[0].DisplayType === "3" && (
+                    <QRCode
+                      bgColor="#FFFFFF"
+                      style={{ width: 120 }}
+                      fgColor="#000000"
+                      level="Q"
+                      value="hellofskjsdlj"
+                      // value={slotDisplayBarcode.Code}
+                    />
+                  )}
               </div>
               <div className={`${styles.controlPanel} ${displayControl}`}>
                 <NavigateBTN

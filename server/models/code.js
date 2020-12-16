@@ -120,6 +120,14 @@ module.exports = (sequelize, DataTypes) => {
         // defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
         // allowNull: false,
       },
+      DisplayStatus: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      DisplayDescription: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      }
     }
     ,
     {
