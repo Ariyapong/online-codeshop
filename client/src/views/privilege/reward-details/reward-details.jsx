@@ -316,7 +316,23 @@ function RewardDetails({ setFooter }) {
       {rewardType === "e-code" && (
         <>
           <div className={styles.details}>
-            <div className={`${styles.lineDetail} font-t-1 font-dy2`}>CODE</div>
+            {/* <div className={`${styles.lineDetail} font-t-1 font-dy2`}>CODE</div> */}
+            <div className={`${styles.lineDetail} font-t-1 font-dy2`}>
+              {slotDisplayBarcode.length === 1 && (
+                <>
+                  <>
+                    {(slotDisplayBarcode[0].DisplayType === null ||
+                      slotDisplayBarcode[0].DisplayType === "1") && <>CODE</>}
+                  </>
+                  <>
+                    {slotDisplayBarcode[0].DisplayType === "2" && <>Barcode</>}
+                  </>
+                  <>
+                    {slotDisplayBarcode[0].DisplayType === "3" && <>QR Code</>}
+                  </>
+                </>
+              )}
+            </div>
           </div>
           <div className={styles.frameBarCode}>
             <div className={styles.displayBarcode}>
@@ -341,16 +357,24 @@ function RewardDetails({ setFooter }) {
                 <div className={`font-t-1 ${styles.codeText}`}>
                   {slotDisplayBarcode.length === 1 &&
                     slotDisplayBarcode[0].DisplayType === null && (
-                      <>{barCodeText.toUpperCase()}</>
+                      <>
+                        <>{barCodeText.toUpperCase()}</>
+                        {/* <>{slotDisplayBarcode[0].Code}</> */}
+                      </>
                     )}
                 </div>
                 <div className={`font-t-1 ${styles.codeText}`}>
                   {slotDisplayBarcode.length === 1 &&
                     slotDisplayBarcode[0].DisplayType === "2" && (
-                      <canvas
-                        id="mycanvas"
-                        className={`${styles.barCodeFrame}`}
-                      ></canvas>
+                      <>
+                        <canvas
+                          id="mycanvas"
+                          className={`${styles.barCodeFrame}`}
+                        ></canvas>
+                        <div className="font-t-1 font-dy4">
+                          {barCodeText.toUpperCase()}
+                        </div>
+                      </>
                     )}
                 </div>
                 {slotDisplayBarcode.length === 1 &&
@@ -360,8 +384,8 @@ function RewardDetails({ setFooter }) {
                       style={{ width: 120 }}
                       fgColor="#000000"
                       level="Q"
-                      value="hellofskjsdlj"
-                      // value={slotDisplayBarcode.Code}
+                      // value="hellofskjsdlj"
+                      value={slotDisplayBarcode[0].Code}
                     />
                   )}
               </div>
