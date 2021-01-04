@@ -379,14 +379,19 @@ function RewardDetails({ setFooter }) {
                 </div>
                 {slotDisplayBarcode.length === 1 &&
                   slotDisplayBarcode[0].DisplayType === "3" && (
-                    <QRCode
-                      bgColor="#FFFFFF"
-                      style={{ width: 120 }}
-                      fgColor="#000000"
-                      level="Q"
-                      // value="hellofskjsdlj"
-                      value={slotDisplayBarcode[0].Code}
-                    />
+                    <>
+                      <QRCode
+                        bgColor="#FFFFFF"
+                        style={{ width: 120 }}
+                        fgColor="#000000"
+                        level="Q"
+                        // value="hellofskjsdlj"
+                        value={slotDisplayBarcode[0].Code}
+                      />
+                      <div className={`${styles.topPad} font-t-1 font-dy4`}>
+                        {slotDisplayBarcode[0].Code}
+                      </div>
+                    </>
                   )}
               </div>
               <div className={`${styles.controlPanel} ${displayControl}`}>

@@ -37,13 +37,13 @@ function ContentShape(props) {
             <div className={`${styles.frameDetail}`}>
               {props.detail && (
                 <>
-                  <div className="font-t-1 font-dy2  kaBrownText">
-                    {props.detail.NameTh}
+                  <div className="font-t-2 font-dy2  kaBrownText">
+                    <b>{props.detail.NameTh}</b>
                   </div>
-                  <div className="font-t-2 font-sdy4-5  kaBrownText">
+                  <div className="font-t-2 font-dy0  kaBrownText">
                     {props.detail.SubNameTh}
                   </div>
-                  <div className="font-t-2 font-dy1  kaBrownText">
+                  <div className="font-t-2 font-dy2  kaBrownText">
                     {props.detail.DetailTh}
                   </div>
                 </>

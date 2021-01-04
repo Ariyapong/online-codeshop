@@ -17,7 +17,10 @@
     line-height: 40px;
   }
   .frameBarCode {
-    padding: 5%;
+    padding: 5% 5% 0 5%;
+    .topPad{
+      padding: .5em 0;
+    }
     .displayBarcode {
       width: 100%;
       // padding: 4% 12% 3%;
