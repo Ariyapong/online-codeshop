@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "tony",
-    "password": "YnWm6TqupHErXz2Yw7hrceSoH7icD6SESt7yfdEZuB9ZxhCcMLqnQLLDDTa2r8qx",
+    "username": "test",
+    "password": "testxxx",
     "database": "online-code-retail-shop",
-    "host": "dev.chococrm.com",
+    "host": "host.xx.xx.xx",
     "dialect": "postgres",
     "port": "55443"
   },
@@ -15,10 +15,10 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "tony",
-    "password": "YnWm6TqupHErXz2Yw7hrceSoH7icD6SESt7yfdEZuB9ZxhCcMLqnQLLDDTa2r8qx",
+    "username": "test",
+    "password": "testxxx",
     "database": "online-code-retail-shop",
-    "host": "dev.chococrm.com",
+    "host": "host.xx.xx.xx",
     "dialect": "postgres",
     "port": "55443"
   }
